@@ -10,11 +10,13 @@ body {
     border: 1px solid red;
     height: 512px;
     width: 512px;
+    flex-shrink: 0;
 }
 
 .singleGrid {
     width: 31px;
     height: 31px;
-    border: 0.5px solid black;
+    border: 0.5px solid rgb(0, 0, 0);
     flex-shrink: 0;
+    background-color: rgb(74, 75, 155);
 }
