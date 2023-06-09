@@ -11,14 +11,19 @@
 <body>
     <div class="sketch-container">
         <div class="settings">
-            <button class="">Grid Size</button>
-            <button class="">Black</button>
-            <button class="">Psych</button>
-            <input class="" type="color">
-            <button class="">Light</button>
-            <button class="">Shadow</button>
-            <button class="">Erase</button>
-            <button class="">Reset</button>
+            <div class="grid-size">
+                <input class="grid-size-input" type="range" min="1" max="100" value="16">
+            </div>
+            <button class="black-button">Black</button>
+            <button class="psych-button">Psych</button>
+            <div class="customize">
+                <button class="customize-button">Customize</button>
+                <input class="customize-input" type="color">
+            </div>
+            <button class="light-button">Light</button>
+            <button class="shadow-button">Shadow</button>
+            <button class="erase-button">Erase</button>
+            <button class="reset-button">Reset</button>
         </div>
         <div id="grid"></div> 
     </div>

@@ -1,5 +1,21 @@
+const gridSizeInput = document.querySelector('.grid-size-input')
+const blackButton = document.querySelector('.black.button')
+const customizeButton = document.querySelector('.customize-button')
+const customizeInput = document.querySelector('.customize-Input')
+
+gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
+
+
 const grid = document.getElementById('grid')
 
+function changeGrid (newGridSize) {
+    let divs = document.getElementsByClassName('.singleGrid')
+    console.log(divs)
+    for (div in divs) {
+        div.remove()
+    }
+
+}
 
 function createGrid (x) {
     
@@ -12,6 +28,7 @@ function createGrid (x) {
         singleGrid.style.height = `${cellX}px`;
         grid.appendChild(singleGrid);
         singleGrid.classList.add('singleGrid')
+        drawLight(singleGrid)
 
     };
 }
@@ -27,7 +44,7 @@ function doSomething(action) {
 }
 */
 
-createGrid(16)
+createGrid(30)
 
 function drawBlack (cell) {
     cell.addEventListener("mouseenter", (e) => {
