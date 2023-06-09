@@ -21,3 +21,14 @@ body {
     row-gap: 0px;
     border: none;
 }
+
+.sketch-container {
+    display: flex;
+    gap: 20px;
+}
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+}
