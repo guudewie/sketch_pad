@@ -1,18 +1,26 @@
 const grid = document.getElementById('grid')
 
 
-for (i=0; i < 256; i++) {
-    const singleGrid = document.createElement('div');
-    grid.appendChild(singleGrid)
-    singleGrid.classList.add('singleGrid')
-    drawLight(singleGrid)
-};
+function createGrid (x) {
+    
+    let singleGrid;
+    let cells = x*x
+    let cellX = 512/x
+    for (i=0; i < cells; i++) {
+        singleGrid = document.createElement('div');
+        singleGrid.style.width = `${cellX}px`;
+        singleGrid.style.height = `${cellX}px`;
+        grid.appendChild(singleGrid);
+        singleGrid.classList.add('singleGrid')
 
-
+        drawLight(singleGrid)
+    };
+}
+createGrid(10)
 
 function drawBlack (cell) {
     cell.addEventListener("mouseenter", (e) => {
-        cell.style.cssText = "background-color: black"
+        cell.style.backgroundColor = "black"
     });
 }
 
@@ -41,9 +49,9 @@ function drawShadow (cell) {
         let rgbBlue = rgbValuesArray[3]
         let multiplier = 0.95
 
-        cell.style.cssText = `background-color: rgb(${rgbRed*multiplier},
-                                                    ${rgbGreen*multiplier},
-                                                    ${rgbBlue*multiplier})`
+        cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
+                                            ${rgbGreen*multiplier},
+                                            ${rgbBlue*multiplier})`
     }); 
 }
 
@@ -61,15 +69,15 @@ function drawLight (cell) {
         let rgbBlue = rgbValuesArray[3]
         let multiplier = 1.05
 
-        cell.style.cssText = `background-color: rgb(${(rgbRed)*multiplier},
-                                                    ${(rgbGreen)*multiplier},
-                                                    ${(rgbBlue)*multiplier})`
+        cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
+                                            ${rgbGreen*multiplier},
+                                            ${rgbBlue*multiplier})`
     }); 
 }
 
 function erase (cell) {
     cell.addEventListener("mouseenter", (e) => {
-        cell.style.cssText = "background-color: white"
+        cell.style.backgroundColor = "white"
     });
 }
 
