@@ -13,10 +13,21 @@ function createGrid (x) {
         grid.appendChild(singleGrid);
         singleGrid.classList.add('singleGrid')
 
-        drawLight(singleGrid)
     };
 }
-createGrid(10)
+
+/*
+function doSomething(action) {
+
+    var cells = document.querySelectorAll('.singleGrid');
+
+   for (c in cells) {
+        drawLight(c)
+    }
+}
+*/
+
+createGrid(16)
 
 function drawBlack (cell) {
     cell.addEventListener("mouseenter", (e) => {
