@@ -5,28 +5,38 @@ const customizeInput = document.querySelector('.customize-Input')
 const lightButton = document.querySelector('.light-button')
 const shadowButton = document.querySelector('.shadow-button')
 const psychButton = document.querySelector('.psych-button')
+const eraseButton = document.querySelector('.erase-button')
+const resetButton = document.querySelector('.reset-button')
 const sketchContainer = document.querySelector('.sketch-container')
 
-const grid = document.getElementById('grid')
-
-let singleGrid;
 
 gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
+resetButton.addEventListener("click", () => {changeGrid(); gridSizeInput.value = 16;})
 
-createGrid()
-draw()
+blackButton.addEventListener("click", () => {loopSingleCells(drawBlack)})
+lightButton.addEventListener("click", () => {loopSingleCells(drawLight);})
+shadowButton.addEventListener("click", () => {loopSingleCells(drawShadow);})
+psychButton.addEventListener("click", () => {loopSingleCells(drawRandom);})
+customizeButton.addEventListener("click", () => {loopSingleCells(drawCustom);})
+eraseButton.addEventListener("click", () => {loopSingleCells(erase)})
 
-function draw (singleGrid) {
 
-    blackButton.addEventListener("click", () => {drawBlack(singleGrid);})
-    lightButton.addEventListener("click", () => {drawLight(singleGrid);})
-    shadowButton.addEventListener("click", () => {drawShadow(singleGrid);})
-    psychButton.addEventListener("click", () => {drawRandom(singleGrid);})
+let singleGrid;
+let customRGB;
+
+function loopSingleCells (drawingMethod) {
+
+    let singleCells = document.querySelectorAll('.singleGrid');
+    singleCells.forEach( e => drawingMethod(e))
 
 }
 
-//grid functions start
-function changeGrid (newGridSize) {
+/********************** GRID FUNCIONS START ***********************/
+
+//initiate grid
+createGrid()
+
+function changeGrid (newGridSize = 16) {
     let grid = document.getElementById('grid')
     grid.remove()
 
@@ -48,12 +58,11 @@ function createGrid (cellsXAndY = 16, newGrid = grid) {
 
         singleGrid.style.width = `${cellDimensions}px`;
         singleGrid.style.height = `${cellDimensions}px`;
-
-        draw(singleGrid)
     };
 }
 
-// Drawing functions start
+/********************** DRAW FUNCIONS START ***********************/
+
 function drawBlack (cell) {
     cell.addEventListener("mouseenter", (e) => {
         cell.style.backgroundColor = "black"
@@ -75,7 +84,7 @@ function drawShadow (cell) {
 
     cell.addEventListener("mouseenter", (e) => {
 
-        let rgbValue = window.getComputedStyle(cell, null).getPropertyValue("background-color")
+        let rgbValue = window.getComputedStyle(cell).getPropertyValue("background-color")
         let regEx = /(\d{1,3}), (\d{1,3}), (\d{1,3})/;
 
         let rgbValuesArray = regEx.exec(rgbValue);
@@ -95,7 +104,7 @@ function drawLight (cell) {
 
     cell.addEventListener("mouseenter", (e) => {
 
-        let rgbValue = window.getComputedStyle(cell, null).getPropertyValue("background-color")
+        let rgbValue = window.getComputedStyle(cell).getPropertyValue("background-color")
         let regEx = /(\d{1,3}), (\d{1,3}), (\d{1,3})/;
 
         let rgbValuesArray = regEx.exec(rgbValue);
@@ -109,6 +118,14 @@ function drawLight (cell) {
                                             ${rgbGreen*multiplier},
                                             ${rgbBlue*multiplier})`
     }); 
+}
+
+function drawCustom (cell) {
+
+    cell.addEventListener("mouseover", (e) => {
+        
+        cell.style.backgroundColor = customRGB
+    })
 }
 
 function erase (cell) {
