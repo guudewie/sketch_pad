@@ -1,51 +1,59 @@
 const gridSizeInput = document.querySelector('.grid-size-input')
-const blackButton = document.querySelector('.black.button')
+const blackButton = document.querySelector('.black-button')
 const customizeButton = document.querySelector('.customize-button')
 const customizeInput = document.querySelector('.customize-Input')
-
-gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
-
+const lightButton = document.querySelector('.light-button')
+const shadowButton = document.querySelector('.shadow-button')
+const psychButton = document.querySelector('.psych-button')
+const sketchContainer = document.querySelector('.sketch-container')
 
 const grid = document.getElementById('grid')
 
-function changeGrid (newGridSize) {
-    let divs = document.getElementsByClassName('.singleGrid')
-    console.log(divs)
-    for (div in divs) {
-        div.remove()
-    }
+let singleGrid;
+
+gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
+
+createGrid()
+draw()
+
+function draw (singleGrid) {
+
+    blackButton.addEventListener("click", () => {drawBlack(singleGrid);})
+    lightButton.addEventListener("click", () => {drawLight(singleGrid);})
+    shadowButton.addEventListener("click", () => {drawShadow(singleGrid);})
+    psychButton.addEventListener("click", () => {drawRandom(singleGrid);})
 
 }
 
-function createGrid (x) {
-    
-    let singleGrid;
-    let cells = x*x
-    let cellX = 512/x
-    for (i=0; i < cells; i++) {
-        singleGrid = document.createElement('div');
-        singleGrid.style.width = `${cellX}px`;
-        singleGrid.style.height = `${cellX}px`;
-        grid.appendChild(singleGrid);
-        singleGrid.classList.add('singleGrid')
-        drawLight(singleGrid)
+//grid functions start
+function changeGrid (newGridSize) {
+    let grid = document.getElementById('grid')
+    grid.remove()
 
+    let newGrid = document.createElement('div');
+    sketchContainer.appendChild(newGrid);
+    newGrid.setAttribute('id', 'grid')
+    
+    createGrid(newGridSize, newGrid);
+}
+
+function createGrid (cellsXAndY = 16, newGrid = grid) {
+    
+    let cellsTotal = cellsXAndY * cellsXAndY
+    let cellDimensions = 512/cellsXAndY
+    for (i=0; i < cellsTotal; i++) {
+        singleGrid = document.createElement('div');
+        newGrid.appendChild(singleGrid);
+        singleGrid.classList.add('singleGrid')
+
+        singleGrid.style.width = `${cellDimensions}px`;
+        singleGrid.style.height = `${cellDimensions}px`;
+
+        draw(singleGrid)
     };
 }
 
-/*
-function doSomething(action) {
-
-    var cells = document.querySelectorAll('.singleGrid');
-
-   for (c in cells) {
-        drawLight(c)
-    }
-}
-*/
-
-createGrid(30)
-
+// Drawing functions start
 function drawBlack (cell) {
     cell.addEventListener("mouseenter", (e) => {
         cell.style.backgroundColor = "black"
@@ -55,11 +63,11 @@ function drawBlack (cell) {
 function drawRandom (cell) {
 
     cell.addEventListener("mouseenter", (e) => {
-        let a = Math.floor(Math.random()*255);
+        let r = Math.floor(Math.random()*255);
+        let g = Math.floor(Math.random()*255);
         let b = Math.floor(Math.random()*255);
-        let c = Math.floor(Math.random()*255);
 
-        cell.style.cssText = `background-color: rgb(${a},${b},${c})`
+        cell.style.backgroundColor = `rgb(${r},${g},${b})`
     });
 }
 
