@@ -1,7 +1,7 @@
 const gridSizeInput = document.querySelector('.grid-size-input')
 const blackButton = document.querySelector('.black-button')
 const customizeButton = document.querySelector('.customize-button')
-const customizeInput = document.querySelector('.customize-Input')
+const customizeInput = document.querySelector('.customize-input')
 const lightButton = document.querySelector('.light-button')
 const shadowButton = document.querySelector('.shadow-button')
 const psychButton = document.querySelector('.psych-button')
@@ -9,9 +9,12 @@ const eraseButton = document.querySelector('.erase-button')
 const resetButton = document.querySelector('.reset-button')
 const sketchContainer = document.querySelector('.sketch-container')
 
+let singleGrid;
+var customRGB = '#ff2020'
 
 gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
 resetButton.addEventListener("click", () => {changeGrid(); gridSizeInput.value = 16;})
+customizeInput.onchange = (() => {customRGB = customizeInput.value})
 
 blackButton.addEventListener("click", () => {loopSingleCells(drawBlack)})
 lightButton.addEventListener("click", () => {loopSingleCells(drawLight);})
@@ -21,13 +24,19 @@ customizeButton.addEventListener("click", () => {loopSingleCells(drawCustom);})
 eraseButton.addEventListener("click", () => {loopSingleCells(erase)})
 
 
-let singleGrid;
-let customRGB ;
-
 function loopSingleCells (drawingMethod) {
 
+    let elements = document.querySelectorAll('.singleGrid');
+    
+    elements.forEach( e => {
+        eClone = e.cloneNode(true)
+
+        e.parentNode.replaceChild(eClone, e)
+    }
+    )
+
     let singleCells = document.querySelectorAll('.singleGrid');
-    singleCells.forEach( e => drawingMethod(e))
+    singleCells.forEach( e => {drawingMethod(e)})
 
 }
 
@@ -64,7 +73,7 @@ function createGrid (cellsXAndY = 16, newGrid = grid) {
 /********************** DRAW FUNCIONS START ***********************/
 
 function drawBlack (cell) {
-    cell.addEventListener("mouseenter", (e) => {
+    cell.addEventListener("mouseover", (e) => {
         cell.style.backgroundColor = "black"
     });
 }
@@ -92,7 +101,7 @@ function drawShadow (cell) {
         let rgbRed = rgbValuesArray[1]
         let rgbGreen = rgbValuesArray[2]
         let rgbBlue = rgbValuesArray[3]
-        let multiplier = 0.95
+        let multiplier = 0.9
 
         cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
                                             ${rgbGreen*multiplier},
@@ -112,7 +121,7 @@ function drawLight (cell) {
         let rgbRed = rgbValuesArray[1]
         let rgbGreen = rgbValuesArray[2]
         let rgbBlue = rgbValuesArray[3]
-        let multiplier = 1.05
+        let multiplier = 1.1
 
         cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
                                             ${rgbGreen*multiplier},
@@ -124,7 +133,7 @@ function drawCustom (cell) {
 
     cell.addEventListener("mouseover", (e) => {
         
-        cell.style.backgroundColor = customRGB
+        cell.style.backgroundColor = customRGB;
     })
 }
 
@@ -137,12 +146,13 @@ function erase (cell) {
 
 /********************** TOGGLE BUTTONS START ***********************/
 
-blackButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+blackButton.addEventListener(("click"), (e) => toggleButtons(e.srcElement))
 psychButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
 customizeButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
 lightButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
 shadowButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
 eraseButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+
 
 function toggleButtons (button) {
 
@@ -209,3 +219,8 @@ function toggleButtons (button) {
             break;
     }
 }
+
+
+
+// only draw when clicked
+// pre select black drawing option
