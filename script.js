@@ -152,3 +152,122 @@ for (i=0; i < 256; i++) {
 //              reset
 //
 //
+
+
+//troggle buttons
+let blackToggle = false;
+let psychToggle = false;
+let customizeToggle = false;
+let lightToggle = false;
+let shadowToggle = false;
+let eraseToggle = false;
+
+blackButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+psychButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+customizeButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+lightButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+shadowButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+eraseButton.addEventListener("click", (e) => toggleButtons(e.srcElement))
+
+function toggleButtons (button) {
+
+    switch (button) {
+        case blackButton:
+            blackToggle = true;
+            blackButton.classList.toggle('button-down');
+            drawBlack()
+
+            psychButton.classList.remove('button-down');
+            psychToggle = false;
+            customizeButton.classList.remove('button-down');
+            customizeToggle = false;
+            lightButton.classList.remove('button-down');
+            lightToggle = false;
+            shadowButton.classList.remove('button-down');
+            shadowToggle = false;
+            eraseButton.classList.remove('button-down');
+            eraseToggle = false;
+            break;
+        
+        case psychButton:
+            psychToggle = true;
+            psychButton.classList.toggle('button-down');
+
+            blackButton.classList.remove('button-down');
+            blackToggle = false;
+            drawBlack()
+            customizeButton.classList.remove('button-down');
+            customizeToggle = false;
+            lightButton.classList.remove('button-down');
+            lightToggle = false;
+            shadowButton.classList.remove('button-down');
+            shadowToggle = false;
+            eraseButton.classList.remove('button-down');
+            eraseToggle = false;
+            break;
+
+        case customizeButton:
+            customizeToggle = true;
+            customizeButton.classList.toggle('button-down');
+
+            blackButton.classList.remove('button-down');
+            blackToggle = false;
+            psychButton.classList.remove('button-down');
+            psychToggle = false;
+            lightButton.classList.remove('button-down');
+            lightToggle = false;
+            shadowButton.classList.remove('button-down');
+            shadowToggle = false;
+            eraseButton.classList.remove('button-down');
+            eraseToggle = false;
+            break;
+
+        case lightButton:
+            lightToggle = true;
+            lightButton.classList.toggle('button-down');
+
+            blackButton.classList.remove('button-down');
+            blackToggle = false;
+            customizeButton.classList.remove('button-down');
+            customizeToggle = false;
+            psychButton.classList.remove('button-down');
+            psychToggle = false;
+            shadowButton.classList.remove('button-down');
+            shadowToggle = false;
+            eraseButton.classList.remove('button-down');
+            eraseToggle = false;
+            break;
+
+        case shadowButton:
+            shadowToggle = true;
+            shadowButton.classList.toggle('button-down');
+
+            blackButton.classList.remove('button-down');
+            blackToggle = false;
+            customizeButton.classList.remove('button-down');
+            customizeToggle = false;
+            lightButton.classList.remove('button-down');
+            lightToggle = false;
+            psychButton.classList.remove('button-down');
+            psychToggle = false;
+            eraseButton.classList.remove('button-down');
+            eraseToggle = false;
+            break;
+            
+        case eraseButton:
+            eraseToggle = true;
+            eraseButton.classList.toggle('button-down');
+
+            blackButton.classList.remove('button-down');
+            blackToggle = false;
+            customizeButton.classList.remove('button-down');
+            customizeToggle = false;
+            lightButton.classList.remove('button-down');
+            lightToggle = false;
+            shadowButton.classList.remove('button-down');
+            shadowToggle = false;
+            psychButton.classList.remove('button-down');
+            psychToggle = false;
+            break;
+    }
+}

@@ -64,15 +64,10 @@ body {
 }
 
 
-.grid-size-button,
-.black-button,
-.psych-button,
-.customize-button,
-.light-button,
-.shadow-button,
-.erase-button,
-.reset-button {
+.button-down {
 
+    background-color: #696969;
+    color: #ffffff;
 }
 
 
