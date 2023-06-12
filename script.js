@@ -10,7 +10,7 @@ const resetButton = document.querySelector('.reset-button')
 const sketchContainer = document.querySelector('.sketch-container')
 
 const EVENT_LISTENER_TYPE = "mouseenter";
-var customRGB = "#6F93F9";
+var customRGB = "#403D39";
 let singleGrid;
 
 
@@ -50,6 +50,9 @@ function loopSingleCells (drawingMethod) {
 createGrid()
 
 function changeGrid (newGridSize = 16) {
+
+    removeButtons()
+
     let grid = document.getElementById('grid')
     grid.remove()
 
@@ -221,6 +224,15 @@ function toggleButtons (button) {
             psychButton.classList.remove('button-down');
             break;
     }
+}
+
+function removeButtons () {
+    eraseButton.classList.remove('button-down');
+    blackButton.classList.remove('button-down');
+    customizeButton.classList.remove('button-down');
+    lightButton.classList.remove('button-down');
+    shadowButton.classList.remove('button-down');
+    psychButton.classList.remove('button-down');
 }
 
 
