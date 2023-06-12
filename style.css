@@ -1,13 +1,15 @@
-
-
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #FFFCF2;
+}
+
+h1 {
     font-family: 'Kablammo', cursive;
-    font-size: 18px;
+    font-size: 30px;
+    margin-bottom: 30px;
     color: #252422;
 }
 
@@ -86,9 +88,18 @@ body {
     flex: 1;
 }
 
-.grid-size {
+.grid-size{
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     width: 100%;
+    gap: 20px;
+}
+
+.grid-size-input-container{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .grid-size-input {
@@ -114,7 +125,7 @@ body {
 }
 
 .grid-size-input:hover {
-    opacity: 1;
+    opacity: 0.9;
 }
 
 

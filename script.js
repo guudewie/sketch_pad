@@ -8,13 +8,16 @@ const psychButton = document.querySelector('.psych-button')
 const eraseButton = document.querySelector('.erase-button')
 const resetButton = document.querySelector('.reset-button')
 const sketchContainer = document.querySelector('.sketch-container')
+const GRID_SIZE_INDICATOR = document.querySelector('.grid-size-indicator')
 
 const EVENT_LISTENER_TYPE = "mouseenter";
 var customRGB = "#403D39";
 let singleGrid;
 
 
-gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
+gridSizeInput.addEventListener("change", () =>  {   changeGrid(gridSizeInput.value);
+                                                    changeGridSizeIndicator(gridSizeInput.value)})
+
 resetButton.addEventListener("click", () => {changeGrid(); gridSizeInput.value = 16;})
 customizeInput.onchange = (() => {customRGB = customizeInput.value})
 
@@ -48,6 +51,11 @@ function loopSingleCells (drawingMethod) {
 
 //initiate grid
 createGrid()
+
+function changeGridSizeIndicator (gridSize) {
+    GRID_SIZE_INDICATOR.textContent = gridSize
+}
+
 
 function changeGrid (newGridSize = 16) {
 
