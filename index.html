@@ -7,22 +7,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kablammo&display=swap" rel="stylesheet">
 </head>
 <body>
+    <h1>S k e t c h – P a d</h1>
     <div class="sketch-container">
         <div class="settings">
             <div class="grid-size">
                 <input class="grid-size-input" type="range" min="1" max="100" value="16">
             </div>
-            <button class="black-button">Black</button>
-            <button class="psych-button">Psych</button>
+            <button class="black-button button">Black</button>
+            <button class="psych-button button">Psych</button>
             <div class="customize">
-                <button class="customize-button">Customize</button>
+                <button class="customize-button button" button>Customize</button>
                 <input class="customize-input" type="color" value="#6F93F9">
             </div>
-            <button class="light-button">Light</button>
-            <button class="shadow-button">Shadow</button>
-            <button class="erase-button">Erase</button>
+            <button class="light-button button">Light</button>
+            <button class="shadow-button button">Shadow</button>
+            <button class="erase-button button">Erase</button>
             <button class="reset-button">Reset</button>
         </div>
         <div id="grid"></div> 
