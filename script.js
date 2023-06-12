@@ -9,12 +9,15 @@ const eraseButton = document.querySelector('.erase-button')
 const resetButton = document.querySelector('.reset-button')
 const sketchContainer = document.querySelector('.sketch-container')
 
+const EVENT_LISTENER_TYPE = "mouseenter";
+var customRGB = "#6F93F9";
 let singleGrid;
-var customRGB = '#ff2020'
+
 
 gridSizeInput.addEventListener("change", () => changeGrid(gridSizeInput.value))
 resetButton.addEventListener("click", () => {changeGrid(); gridSizeInput.value = 16;})
 customizeInput.onchange = (() => {customRGB = customizeInput.value})
+
 
 blackButton.addEventListener("click", () => {loopSingleCells(drawBlack)})
 lightButton.addEventListener("click", () => {loopSingleCells(drawLight);})
@@ -32,13 +35,14 @@ function loopSingleCells (drawingMethod) {
         eClone = e.cloneNode(true)
 
         e.parentNode.replaceChild(eClone, e)
-    }
-    )
+    })
 
     let singleCells = document.querySelectorAll('.singleGrid');
-    singleCells.forEach( e => {drawingMethod(e)})
 
+    
+    singleCells.forEach( e => {drawingMethod(e)})
 }
+
 
 /********************** GRID FUNCIONS START ***********************/
 
@@ -73,14 +77,14 @@ function createGrid (cellsXAndY = 16, newGrid = grid) {
 /********************** DRAW FUNCIONS START ***********************/
 
 function drawBlack (cell) {
-    cell.addEventListener("mouseover", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
         cell.style.backgroundColor = "black"
     });
 }
 
 function drawRandom (cell) {
 
-    cell.addEventListener("mouseenter", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
         let r = Math.floor(Math.random()*255);
         let g = Math.floor(Math.random()*255);
         let b = Math.floor(Math.random()*255);
@@ -91,54 +95,53 @@ function drawRandom (cell) {
 
 function drawShadow (cell) {
 
-    cell.addEventListener("mouseenter", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
 
         let rgbValue = window.getComputedStyle(cell).getPropertyValue("background-color")
         let regEx = /(\d{1,3}), (\d{1,3}), (\d{1,3})/;
 
         let rgbValuesArray = regEx.exec(rgbValue);
 
-        let rgbRed = rgbValuesArray[1]
-        let rgbGreen = rgbValuesArray[2]
-        let rgbBlue = rgbValuesArray[3]
-        let multiplier = 0.9
+        let addor = -20;
+        let rgbRedS = Number(rgbValuesArray[1])+addor
+        let rgbGreenS = Number(rgbValuesArray[2])+addor
+        let rgbBlueS = Number(rgbValuesArray[3])+addor
 
-        cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
-                                            ${rgbGreen*multiplier},
-                                            ${rgbBlue*multiplier})`
+        cell.style.backgroundColor = `rgb(  ${rgbRedS},
+                                            ${rgbGreenS},
+                                            ${rgbBlueS})`
     }); 
 }
 
 function drawLight (cell) {
 
-    cell.addEventListener("mouseenter", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
 
         let rgbValue = window.getComputedStyle(cell).getPropertyValue("background-color")
         let regEx = /(\d{1,3}), (\d{1,3}), (\d{1,3})/;
 
+        let addor = 20;
         let rgbValuesArray = regEx.exec(rgbValue);
-        console.log(rgbValuesArray)
-        let rgbRed = rgbValuesArray[1]
-        let rgbGreen = rgbValuesArray[2]
-        let rgbBlue = rgbValuesArray[3]
-        let multiplier = 1.1
+        let rgbRedL = Number(rgbValuesArray[1])+addor
+        let rgbGreenL = Number(rgbValuesArray[2])+addor
+        let rgbBlueL = Number(rgbValuesArray[3])+addor
 
-        cell.style.backgroundColor = `rgb(  ${rgbRed*multiplier},
-                                            ${rgbGreen*multiplier},
-                                            ${rgbBlue*multiplier})`
+        cell.style.backgroundColor = `rgb(  ${rgbRedL},
+                                            ${rgbGreenL},
+                                            ${rgbBlueL})`
     }); 
 }
 
 function drawCustom (cell) {
 
-    cell.addEventListener("mouseover", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
         
         cell.style.backgroundColor = customRGB;
     })
 }
 
 function erase (cell) {
-    cell.addEventListener("mouseenter", (e) => {
+    cell.addEventListener(EVENT_LISTENER_TYPE, (e) => {
         cell.style.backgroundColor = "white"
     });
 }
