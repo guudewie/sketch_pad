@@ -15,9 +15,8 @@ var customRGB = "#403D39";
 let singleGrid;
 
 
-gridSizeInput.addEventListener("input", () =>  {   changeGrid(gridSizeInput.value);
-                                                    changeGridSizeIndicator(gridSizeInput.value)})
-
+gridSizeInput.addEventListener("input", () =>  {changeGridSizeIndicator(gridSizeInput.value)})
+gridSizeInput.addEventListener("change", () =>  {changeGrid(gridSizeInput.value)})
 resetButton.addEventListener("click", () => {   changeGrid(); 
                                                 gridSizeInput.value = 16;
                                                 GRID_SIZE_INDICATOR.textContent = 16;})

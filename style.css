@@ -4,14 +4,66 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #FFFCF2;
+    border: none;
+    margin: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 15px;
 }
 
 h1 {
     font-family: 'Kablammo', cursive;
     font-size: 30px;
+    color: #252422;
+}
+
+.github-container {
+    display: flex;
+    justify-content: center;
+}
+
+.github-icon{
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -ms-transition: -ms-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+
+}
+
+.github-icon:hover{
+    transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+}
+
+/*
+header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.github-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Kablammo', cursive;
+    font-size: 30px;
     margin-bottom: 30px;
     color: #252422;
 }
+
+*/
 
 #grid {
     display: flex;
@@ -94,6 +146,10 @@ h1 {
     align-items: flex-end;
     width: 100%;
     gap: 20px;
+}
+
+.grid-size-indicator {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .grid-size-input-container{
