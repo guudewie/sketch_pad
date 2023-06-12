@@ -8,7 +8,7 @@ body {
     background-color: #FFFCF2;
     font-family: 'Kablammo', cursive;
     font-size: 18px;
-    color: #32302d;
+    color: #252422;
 }
 
 #grid {
@@ -96,12 +96,21 @@ body {
     width: 100%;
     height: 7px;
     border-radius: 6px;
-    background: #d3d3d3;
+    background: #403D39;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
     margin-top: 20px;
+}
+.grid-size-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #FFFCF2;
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #252422;
 }
 
 .grid-size-input:hover {
